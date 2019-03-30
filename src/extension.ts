@@ -31,12 +31,8 @@ function getCompletionsTexts(line: string) {
 
     const completions = toCompletionTexts(type.baseName, false);
 
-    if (type.isGeneric && isGenericCollection(type.baseName)) {
-        let arg = parseGenericArgument(type.genericArguments);
-
-        if (arg) {
-            completions.push(...toCompletionTexts(arg, true));
-        }
+    if (type.isGeneric && isGenericCollection(type.baseName) && type.genericArgument) {
+        completions.push(...toCompletionTexts(type.genericArgument, true));
     }
 
     return completions;
@@ -68,11 +64,13 @@ function parse(line: string) {
         return undefined;
     }
 
+    const isGeneric = !!matches[7];
+
     return {
         fullType: matches[3],
         baseName: baseName,
-        genericArguments: matches[8],
-        isGeneric: !!matches[7],
+        genericArgument: isGeneric ? parseGenericArgument(matches[8]) : undefined,
+        isGeneric: isGeneric,
         isArray: !!matches[9]
     };
 }
