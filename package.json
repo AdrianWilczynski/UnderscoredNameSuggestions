@@ -3,25 +3,34 @@
     "displayName": "C# Underscored Name Suggestions",
     "description": "Type-based underscored name suggestions for C#",
     "publisher": "adrianwilczynski",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AdrianWilczynski/UnderscoredNameSuggestions.git"
+    },
+    "icon": "img/logo.png",
     "version": "0.0.1",
+    "preview": true,
     "engines": {
         "vscode": "^1.32.0"
     },
     "categories": [
-        "Other"
+        "Programming Languages",
+        "Snippets"
+    ],
+    "keywords": [
+        "C#",
+        "CSharp",
+        "Namespace",
+        "Autocompletion",
+        "Autocomplete",
+        "IntelliSense",
+        ".NET",
+        ".NET Core"
     ],
     "activationEvents": [
-        "*"
+        "onLanguage:csharp"
     ],
     "main": "./out/extension.js",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.helloWorld",
-                "title": "Hello World"
-            }
-        ]
-    },
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
