@@ -19,7 +19,7 @@ function getCompletionItems(texts: string[]) {
     return texts.map(t => new vscode.CompletionItem(t, vscode.CompletionItemKind.Variable));
 }
 
-function getCompletionsTexts(line: string) {
+export function getCompletionsTexts(line: string) {
     const type = parse(line);
     if (!type) {
         return [];
