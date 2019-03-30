@@ -63,9 +63,14 @@ function parse(line: string) {
         return undefined;
     }
 
+    const baseName = matches[6];
+    if (isKeyword(baseName)) {
+        return undefined;
+    }
+
     return {
         fullType: matches[3],
-        baseName: matches[6],
+        baseName: baseName,
         genericArguments: matches[8],
         isGeneric: !!matches[7],
         isArray: !!matches[9]
@@ -101,6 +106,29 @@ const collectionTypes = ['ArraySegment', 'BlockingCollection', 'ConcurrentBag', 
 
 function isGenericCollection(name: string) {
     return collectionTypes.includes(name);
+}
+
+const keywords = ['abstract', 'as', 'base', 'break', 'case',
+    'catch', 'checked', 'class', 'const', 'continue',
+    'default', 'delegate', 'do', 'else', 'enum',
+    'event', 'explicit', 'extern', 'false', 'finally',
+    'fixed', 'for', 'foreach', 'goto', 'if',
+    'implicit', 'in', 'interface', 'internal', 'is',
+    'lock', 'namespace', 'new', 'null', 'operator',
+    'out', 'override', 'params', 'private', 'protected',
+    'public', 'readonly', 'ref', 'return', 'sealed',
+    'sizeof', 'stackalloc', 'static', 'struct', 'switch',
+    'this', 'throw', 'true', 'try', 'typeof',
+    'unchecked', 'unsafe', 'using', 'virtual', 'void',
+    'volatile', 'while', 'add', 'alias', 'ascending',
+    'async', 'await', 'by', 'descending', 'dynamic',
+    'equals', 'from', 'get', 'global', 'group',
+    'into', 'join', 'let', 'nameof', 'on',
+    'orderby', 'partial', 'remove', 'select', 'set',
+    'value', 'var', 'when', 'where', 'yield'];
+
+function isKeyword(name: string) {
+    return keywords.includes(name);
 }
 
 function toPartialNames(name: string) {
