@@ -1,4 +1,4 @@
-# C# Underscored Name Suggestions
+# C# Underscored Field Name Suggestions
 
 ## See it in action
 

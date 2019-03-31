@@ -1,7 +1,7 @@
 {
-    "name": "underscored-names",
-    "displayName": "C# Underscored Name Suggestions",
-    "description": "Type-based underscored name suggestions for C#",
+    "name": "underscore-name",
+    "displayName": "C# Underscored Field Name Suggestions",
+    "description": "Type-based underscored field name suggestions for C#",
     "publisher": "adrianwilczynski",
     "repository": {
         "type": "git",
