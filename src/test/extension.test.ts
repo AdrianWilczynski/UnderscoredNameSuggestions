@@ -54,48 +54,54 @@ suite('Extension should', function () {
 		const completions = getCompletionsTexts('private IEnumerable<MyCustomType> ', '');
 
 		assert.lengthOf(completions, 4);
-		assert.includeMembers(completions, ['_enumerable', '_mys', '_myCustoms', '_myCustomTypes']);
+		assert.includeMembers(completions, ['_enumerable', '_mies', '_myCustoms', '_myCustomTypes']);
 	});
 
 
-	test("Parse array", function () {
+	test('Parse array', function () {
 		const completions = getCompletionsTexts('private ItemService[][,] ', '');
 
 		assert.lengthOf(completions, 2);
 		assert.includeMembers(completions, ['_items', '_itemServices']);
 	});
 
-	test("Parse array of generics", function () {
+	test('Parse array of generics', function () {
 		const completions = getCompletionsTexts('private ItemService<IDictionary<string, int>>[][,] ', '');
 
 		assert.lengthOf(completions, 2);
 		assert.includeMembers(completions, ['_items', '_itemServices']);
 	});
 
-	test("Accept tabs as whitespace characters", function () {
+	test('Accept tabs as whitespace characters', function () {
 		const completions = getCompletionsTexts('\tprivate\tItemService<IDictionary<string, \tint>>[][,]\t \t', '');
 
 		assert.lengthOf(completions, 2);
 		assert.includeMembers(completions, ['_items', '_itemServices']);
 	});
 
-	test("Still work after closing and reopening suggestion list", function () {
+	test('Still work after closing and reopening suggestion list', function () {
 		const completions = getCompletionsTexts('private ItemRepository itemRe', '');
 
 		assert.lengthOf(completions, 2);
 	});
 
-	test("Guard against invalid suffix", function () {
+	test('Guard against invalid suffix', function () {
 		assert.lengthOf(getCompletionsTexts('private ItemRepository itemRe', ' { get; set; }'), 0);
 		assert.lengthOf(getCompletionsTexts('private ItemRepository ', ' _itemRepository;'), 0);
 	});
 
-	test("Work for a valid suffix", function () {
+	test('Work for a valid suffix', function () {
 		assert.lengthOf(getCompletionsTexts('private ItemRepository itemRe', ';'), 2);
 		assert.lengthOf(getCompletionsTexts('private ItemRepository itemRe', '	; '), 2);
 		assert.lengthOf(getCompletionsTexts('private ItemRepository itemRe', ';	'), 2);
 		assert.lengthOf(getCompletionsTexts('private ItemRepository itemRe', '		     	'), 2);
 		assert.lengthOf(getCompletionsTexts('private ItemRepository itemRe', ''), 2);
+	});
+
+	test('Correctly pluralize words ending with a consonant and "y"', function () {
+		const completions = getCompletionsTexts('private ItemRepository[] ', '');
+
+		assert.includeMembers(completions, ['_itemRepositories', '_items']);
 	});
 
 	test("Ignore this nonsense", function () {

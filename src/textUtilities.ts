@@ -20,7 +20,15 @@ export function trimInterfacePrefix(name: string) {
 }
 
 export function toPluralized(name: string) {
-	return name.endsWith('s') ? name : name + 's';
+	if (name.endsWith('s')) {
+		return name;
+	}
+
+	if (/[bcdfghjklmnpqrstvxzw]y$/.test(name) || /quy$/.test(name)) {
+		return name.replace(/y$/, 'ies');
+	}
+
+	return name + 's';
 }
 
 export function toUnderscored(name: string) {
