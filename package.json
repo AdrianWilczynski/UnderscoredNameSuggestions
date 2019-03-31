@@ -20,7 +20,9 @@
     "keywords": [
         "C#",
         "CSharp",
-        "Namespace",
+		"Suggestion",
+		"Suggestions",
+		"Name",
         "Autocompletion",
         "Autocomplete",
         "IntelliSense",
