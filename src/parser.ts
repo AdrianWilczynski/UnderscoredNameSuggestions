@@ -1,10 +1,14 @@
 import { isKeyword } from './constants';
 
-export function parse(line: string) {
-	//                                              modifiers                                                      qualifiers           name  generic_arguments   array_brackets                                 
-	const regex = /^[ \t]*((public|private|protected|internal|new|volatile|unsafe|static|readonly)[ \t]+)*((\w+(<[\w \t,.<>[\]]+>)?\.)*(\w+)(<([\w \t,.<>[\]]+)>)?(\[[ \t,]*])*)[ \t]+$/;
+export function parseFieldDeclaration(linePrefix: string, lineSuffix: string) {
+	if (!/^[ \t]*;?[ \t]*$/.test(lineSuffix)) {
+		return undefined;
+	}
 
-	const matches = line.match(regex);
+	//                                              modifiers                                                      qualifiers           name  generic_arguments   array_brackets                                 
+	const regex = /^[ \t]*((public|private|protected|internal|new|volatile|unsafe|static|readonly)[ \t]+)*((\w+(<[\w \t,.<>[\]]+>)?\.)*(\w+)(<([\w \t,.<>[\]]+)>)?(\[[ \t,]*])*)[ \t]+\w*$/;
+
+	const matches = linePrefix.match(regex);
 	if (!matches) {
 		return undefined;
 	}
