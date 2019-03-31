@@ -8,7 +8,7 @@
         "url": "https://github.com/AdrianWilczynski/UnderscoredNameSuggestions.git"
     },
     "icon": "img/logo.png",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "preview": true,
     "engines": {
         "vscode": "^1.32.0"
