@@ -104,6 +104,11 @@ suite('Extension should', function () {
 		assert.includeMembers(completions, ['_itemRepositories', '_items']);
 	});
 
+	test('Work if line suffix consists of a field assignment', function () {
+		assert.includeMembers(getCompletionsTexts('private int ', '= 6;'), [, '_int']);
+		assert.includeMembers(getCompletionsTexts('private IItemRepository ', '= new ItemRepository<Item>();'), [, '_item', '_itemRepository']);
+	});
+
 	test("Ignore this nonsense", function () {
 		assert.lengthOf(getCompletionsTexts('private My<Ty>pe ', ''), 0);
 		assert.lengthOf(getCompletionsTexts('private MyType{} ', ''), 0);

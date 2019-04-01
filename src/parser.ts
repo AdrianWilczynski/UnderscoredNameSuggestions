@@ -1,7 +1,7 @@
 import { isKeyword } from './constants';
 
 export function parseFieldDeclaration(linePrefix: string, lineSuffix: string) {
-	if (!/^[ \t]*;?[ \t]*$/.test(lineSuffix)) {
+	if (!/^[ \t]*(=.*)?;?[ \t]*$/.test(lineSuffix)) {
 		return undefined;
 	}
 
