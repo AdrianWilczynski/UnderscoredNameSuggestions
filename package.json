@@ -9,7 +9,6 @@
     },
     "icon": "img/logo.png",
     "version": "1.0.3",
-    "preview": true,
     "engines": {
         "vscode": "^1.32.0"
     },
