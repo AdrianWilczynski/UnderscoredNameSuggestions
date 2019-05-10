@@ -21,5 +21,5 @@ function getLineSuffix(document: vscode.TextDocument, position: vscode.Position)
 }
 
 function getCompletionItems(texts: string[]) {
-	return texts.map(t => new vscode.CompletionItem(t, vscode.CompletionItemKind.Variable));
+	return texts.map(t => new vscode.CompletionItem(t, vscode.CompletionItemKind.Field));
 }
